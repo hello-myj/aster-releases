@@ -72,7 +72,7 @@ Passing desktop upload/readback does not establish hardware compatibility.
 
 ## Local validation (2026-11-13/14)
 
-Current channel: obs-20261114-store031, Store 0.3.1. Both boards were installed and loaded their OBS catalogs using AOT. The three-size real-WASM UI test covers initial URL prefix visibility, single-step caret movement, long-press acceleration, release/drag-out cancellation, source persistence, size units and download speed. Static download validation and pagination tests also passed. All publication objects passed anonymous full readback before switching the root descriptor.
+Current channel: obs-20261115-xiangqi021, Store 0.3.1. Xiangqi 0.2.1 is included for P4 480×480 and portrait lckfb 240×320 (8 P4 / 6 lckfb catalog entries). All 871 objects passed anonymous full size/SHA256 readback before channel publication; both Xiangqi packages also passed Range 206 validation. Both boards were installed and loaded their OBS catalogs using AOT. The three-size real-WASM UI test covers initial URL prefix visibility, single-step caret movement, long-press acceleration, release/drag-out cancellation, source persistence, size units and download speed. Static download validation and pagination tests also passed. All publication objects passed anonymous full readback before switching the root descriptor.
 
 
 Published `obs-20261114-apps2` to the Guangzhou bucket with Store 0.2.3. The
