@@ -1,2 +1,6 @@
 build/
 __pycache__/
+*.pyc
+.venv/
+credentials*.csv
+.env

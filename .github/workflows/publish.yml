@@ -52,7 +52,7 @@ jobs:
         run: |
           python build/aster-apps/tools/prepare-publication.py --tag "$ASTER_TAG" \
             --repository "$GITHUB_REPOSITORY" --output "build/assets-$ASTER_TAG" \
-            --sdk build/aster-sdk --firmware build/aster-firmware
+            --sdk build/aster-sdk --firmware build/aster-firmware --app TouchTest
       - name: Upload draft and publish channel atomically
         env:
           GH_TOKEN: ${{ github.token }}
