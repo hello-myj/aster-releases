@@ -92,3 +92,8 @@ payloads were actually downloaded: P4 178012 bytes / 1095 ms, lckfb 167952 bytes
 1482 ms (individual transfer measurements, not general throughput guarantees).
 Both Store startup tests confirmed the OBS source and loaded catalog/icons.
 Manual app installation/launch through the new channel remains a user check.
+
+
+## ESP32-S31 bootstrap (2026-11-15)
+
+Published `obs-20261115-s31-1`. Added `fakepod-s31` / RISC-V / 460×460 bootstrap resources and an initial TouchTest catalog. P4 and lckfb catalogs retain the preceding release contents. The immutable snapshot reuses 869 existing objects through OBS server-side copies and uploads 16 new objects; new S31 metadata and payloads passed anonymous full SHA256 readback, as did the P4/lckfb bootstrap descriptors and first catalog pages. The root source was switched last. Device bootstrap validation is still in progress.
