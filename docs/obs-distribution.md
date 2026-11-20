@@ -97,3 +97,11 @@ Manual app installation/launch through the new channel remains a user check.
 ## ESP32-S31 bootstrap (2026-11-15)
 
 Published `obs-20261115-s31-1`. Added `fakepod-s31` / RISC-V / 460×460 bootstrap resources and an initial TouchTest catalog. P4 and lckfb catalogs retain the preceding release contents. The immutable snapshot reuses 869 existing objects through OBS server-side copies and uploads 16 new objects; new S31 metadata and payloads passed anonymous full SHA256 readback, as did the P4/lckfb bootstrap descriptors and first catalog pages. The root source was switched last. Device bootstrap validation is still in progress.
+
+## FAKE POD NANO PRO music player, 2026-11-21
+
+The OBS channel points to `obs-20261121-hifi0419`. Store 0.3.2 on FAKE POD NANO PRO offers Aster Music 0.4.19 for `fakepod-s31`, RISC-V AOT, 460×460, firmware ABI 4.5 and the `media-player` capability. The package is 5,146,316 bytes with SHA-256 `604a161e4a0dc07d2f5a3b29253b321336c4384346885415ac528bf9179d6b5e`. The two Noto lyric fonts and their notices are inside the package. [Player source and credits](https://github.com/hello-myj/aster-apps/tree/40eaf8315bb30b2ce18c38761ae64990d1905222/HiFiPlayer)
+
+First boot on FAKE POD now installs Store 0.3.2. Existing 0.3.1 installations can use SDK serial deployment to upgrade the Store. Both catalogs are available under the same channel. The older Store reads the TouchTest catalog. A compatible 0.3.2 client follows the extended catalog and can download the player. [Store source](https://github.com/hello-myj/aster-apps/tree/5167721d345ab7a98017841b37280cfb345021e3/AppStore) · [Static export source](https://github.com/hello-myj/aster-sdk/blob/310b7d5690a58a7397a7dcc3eb6c6c8456875c95/tools/static_distribution.py)
+
+Anonymous readback verified the complete player package and a 206 byte-range response. The FAKE POD loaded the public listing and its icon. The Guangzhou bucket serves the same fish-eagle P4C5 and lckfb catalog contents as the preceding release (8 and 6 entries respectively). All ten FAKE POD system font hashes match the preceding bootstrap profile.
