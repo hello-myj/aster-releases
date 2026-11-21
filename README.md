@@ -27,7 +27,7 @@ Public assets contain no Wi-Fi credentials, personal tokens or device identifier
 ## Publish
 
 Open Actions → **Publish static Aster distribution** → **Run workflow**.
-The workflow compiles and verifies both hardware builds, exports static JSON and
+The workflow builds and verifies the RISC-V and Xtensa packages, exports static JSON and
 content-addressed payloads, uploads a draft, then publishes it as the latest release.
 If building/uploading fails, the prior latest release stays available. A rerun uses
 a different tag. Do not overwrite existing assets.
@@ -36,25 +36,17 @@ For local export, use `aster-apps/tools/prepare-publication.py`; uploading uses
 `aster-sdk/tools/aster.py distribute publish` with an operator `gh` login. Devices
 never use the GitHub REST API or embed a token.
 
-`publication.json` defines the complete OBS catalog, exclusively from `aster-apps`:
-TouchTest, GoldMiner, OutRun, PixelWheels, PAL, OpenOMF and OpenTyrian.
-OpenOMF/OpenTyrian are P4-only; lckfb receives the other five projects. SDK samples
-are not part of this catalog. Locally, build each game with its own project tools,
-then use `prepare-publication.py --catalog publication.json --skip-build` to verify
-and export the existing packages/resources. The GitHub workflow currently builds
-only TouchTest; full game build preparation is not automated in CI.
+[publication.json](publication.json) selects nine APPS projects for OBS. The OBS first-boot profiles currently install Store 0.3.3 separately. The device then sees the newest compatible version for its board, architecture, ABI, capabilities and screen.
 
-The channel includes OSPTEK P4/ST7102 (480×480) and lckfb S3 (240×320).
-Only explicitly supported hardware appears in each catalog; the device checks the
-board, CPU/AOT, ABI, display and capabilities again before installing.
+- **OSPTEK P4C5**, `osptek-p4-st7102`, 480×480, RISC-V — TouchTest, GoldMiner, OutRun, PixelWheels, PAL, Xiangqi, OpenOMF and OpenTyrian.
+- **LCKFB ESP32-S3**, `aster.esp32s3.lckfb`, 240×320, Xtensa — TouchTest, GoldMiner, OutRun, PixelWheels, PAL and Xiangqi.
+- **FAKE POD NANO PRO**, `fakepod-s31`, 460×460, RISC-V — TouchTest and Aster Music. The player requires firmware ABI 4.5, the media-player capability and an extended-catalog Store client.
 
-GitHub provides the hosting and TLS. This distribution has no accounts, payment,
-activation codes or authorization service. Direct GitHub reachability, download
-speed and resumable requests must be validated on the user's network.
+Build the app variants and their resources before exporting the full OBS snapshot. The GitHub mirror workflow selects TouchTest and prepares bootstrap files for all three boards. A source update here and a change to the live OBS channel are separate operations. See [OBS distribution](docs/obs-distribution.md) for the publication procedure and dated snapshots.
 
 ## Limits and licensing
 
-One release currently exports at most 1,000 assets, each below 2 GiB. Large game
+A GitHub release currently exports at most 1,000 assets, each below 2 GiB. Large game
 resource trees may need a future bundled-resource format or separate channels.
 The current channel publishes system fonts, Store and the compatible apps listed above. Font notices
 and project licenses remain in their source repositories; retain those licenses

@@ -66,13 +66,13 @@ Firmware defaults and PEM trust roots are configurable in
 `aster-firmware/config/distribution.json`; see that repository's
 `docs/distribution-config.md`. Store defaults come from its `app.toml`, not C code.
 
-Validate on both boards: time synchronization, catalog hardware filtering, Range
+Validate on each supported board: time synchronization, catalog hardware filtering, Range
 206/Content-Range, actual payload SHA256, Store install and an AOT app launch.
 Passing desktop upload/readback does not establish hardware compatibility.
 
-## Local validation (2026-11-13/14)
+## Early public snapshots (2026-11-13 to 2026-11-15)
 
-Current channel: obs-20261115-xiangqi021, Store 0.3.1. Xiangqi 0.2.1 is included for P4 480×480 and portrait lckfb 240×320 (8 P4 / 6 lckfb catalog entries). All 871 objects passed anonymous full size/SHA256 readback before channel publication; both Xiangqi packages also passed Range 206 validation. Both boards were installed and loaded their OBS catalogs using AOT. The three-size real-WASM UI test covers initial URL prefix visibility, single-step caret movement, long-press acceleration, release/drag-out cancellation, source persistence, size units and download speed. Static download validation and pagination tests also passed. All publication objects passed anonymous full readback before switching the root descriptor.
+The `obs-20261115-xiangqi021` snapshot contained Store 0.3.1. Xiangqi 0.2.1 is included for P4 480×480 and portrait lckfb 240×320 (8 P4 / 6 lckfb catalog entries). All 871 objects passed anonymous full size/SHA256 readback before channel publication; both Xiangqi packages also passed Range 206 validation. Both boards were installed and loaded their OBS catalogs using AOT. The three-size real-WASM UI test covers initial URL prefix visibility, single-step caret movement, long-press acceleration, release/drag-out cancellation, source persistence, size units and download speed. Static download validation and pagination tests also passed. All publication objects passed anonymous full readback before switching the root descriptor.
 
 
 Published `obs-20261114-apps2` to the Guangzhou bucket with Store 0.2.3. The
@@ -102,10 +102,20 @@ Published `obs-20261115-s31-1`. Added `fakepod-s31` / RISC-V / 460×460 bootstra
 
 Snapshot `obs-20261121-hifi0419` introduced Aster Music 0.4.19 in Store 0.3.2 for `fakepod-s31`, RISC-V AOT, 460×460, firmware ABI 4.5 and the `media-player` capability. The package is 5,146,316 bytes with SHA-256 `604a161e4a0dc07d2f5a3b29253b321336c4384346885415ac528bf9179d6b5e`. The two Noto lyric fonts and their notices are inside the package. [Player source and credits](https://github.com/hello-myj/aster-apps/tree/40eaf8315bb30b2ce18c38761ae64990d1905222/HiFiPlayer)
 
-First boot on FAKE POD now installs Store 0.3.2. Existing 0.3.1 installations can use SDK serial deployment to upgrade the Store. Both catalogs are available under the same channel. The older Store reads the TouchTest catalog. A compatible 0.3.2 client follows the extended catalog and can download the player. [Store source](https://github.com/hello-myj/aster-apps/tree/5167721d345ab7a98017841b37280cfb345021e3/AppStore) · [Static export source](https://github.com/hello-myj/aster-sdk/blob/310b7d5690a58a7397a7dcc3eb6c6c8456875c95/tools/static_distribution.py)
+In that snapshot, first boot on FAKE POD installed Store 0.3.2. Existing 0.3.1 installations can use SDK serial deployment to upgrade the Store. Both catalogs are available under the same channel. The older Store reads the TouchTest catalog. A compatible 0.3.2 client follows the extended catalog and can download the player. [Store source](https://github.com/hello-myj/aster-apps/tree/5167721d345ab7a98017841b37280cfb345021e3/AppStore) · [Static export source](https://github.com/hello-myj/aster-sdk/blob/310b7d5690a58a7397a7dcc3eb6c6c8456875c95/tools/static_distribution.py)
 
 Anonymous readback verified the complete player package and a 206 byte-range response. The FAKE POD loaded the public listing and its icon. The Guangzhou bucket serves the same fish-eagle P4C5 and lckfb catalog contents as the preceding release (8 and 6 entries respectively). All ten FAKE POD system font hashes match the preceding bootstrap profile.
 
 ## Aster Music 0.4.25, 2026-11-21
 
 The Guangzhou OBS channel was switched to `obs-20261121-hifi0425`. The FAKE POD NANO PRO extended catalog offers the player for `fakepod-s31` only. The RISC-V AOT package is 5,192,168 bytes with SHA-256 `3f22b11f44c4796eab113b1436399830a96629a1fa3ed95a032b8064d412e054`. [Player source and credits](https://github.com/hello-myj/aster-apps/tree/a5b706543767c5d2f71dfd99e2b1f05f97dc7967/HiFiPlayer)
+
+## Public snapshot checked on 2026-11-22
+
+The public source descriptor resolved to `obs-20261122-hifi0427`. Its extended FAKE POD catalog listed Aster Music 0.4.27 and TouchTest. The OSPTEK P4C5 catalog listed eight applications and the lckfb catalog listed six. PAL was 0.13.0 on OSPTEK and 0.12.3 on lckfb. The bootstrap package was Store 0.3.2 for FAKE POD and 0.3.1 for OSPTEK and lckfb. These are versions in the published snapshot; a new source commit does not change a device's download. [Public channel descriptor](https://aster-releases.obs.cn-south-1.myhuaweicloud.com/aster-source.json)
+
+## Bootstrap Store 0.3.3, 2026-11-22
+
+The public channel now points to `obs-20261122-store033`. All three first-boot profiles install Store 0.3.3. Devices that completed setup keep their installed Store until it is updated. The OSPTEK and FAKE POD RISC-V package is 188,624 bytes (SHA-256 `381b83196a8b39314422df54bd8e70e7b3bb368a10e3464e8002b1f776a95d0a`). The lckfb Xtensa package is 178,188 bytes (SHA-256 `4bcb633820d0097ef1f3330caef934cb113640c13a0557d905bd0efaf2e8c064`).
+
+Anonymous HTTPS downloads confirmed each package's ID, version, AOT target, full digest and HTTP 206 byte ranges. Each board retains the same ten system fonts and catalog app releases. The extended FAKE POD catalog lists two apps, including Aster Music 0.4.27. OSPTEK lists eight and lckfb six. [Public channel](https://aster-releases.obs.cn-south-1.myhuaweicloud.com/aster-source.json) · [Snapshot checksums](https://aster-releases.obs.cn-south-1.myhuaweicloud.com/releases/obs-20261122-store033/SHA256SUMS)

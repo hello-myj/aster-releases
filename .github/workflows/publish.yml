@@ -2,15 +2,18 @@ name: Publish static Aster distribution
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - '.github/workflows/publish.yml'
   workflow_dispatch:
     inputs:
       sdk_ref:
         description: SDK branch or commit
-        default: feat/github-static-distribution
+        default: main
         required: true
       apps_ref:
         description: APPS branch or commit
-        default: feat/github-static-distribution
+        default: main
         required: true
 permissions:
   contents: write
@@ -26,12 +29,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: hello-myj/aster-sdk
-          ref: ${{ inputs.sdk_ref || 'feat/github-static-distribution' }}
+          ref: ${{ inputs.sdk_ref || 'main' }}
           path: build/aster-sdk
       - uses: actions/checkout@v4
         with:
           repository: hello-myj/aster-apps
-          ref: ${{ inputs.apps_ref || 'feat/github-static-distribution' }}
+          ref: ${{ inputs.apps_ref || 'main' }}
           path: build/aster-apps
       - uses: actions/checkout@v4
         with:
@@ -48,7 +51,7 @@ jobs:
           chmod +x build/aster-sdk/toolchain/wasi-sdk-24.0-x86_64-linux/bin/*
       - name: Select immutable release tag
         run: echo "ASTER_TAG=public-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_ENV"
-      - name: Build, verify and export both hardware profiles
+      - name: Build, verify and export three board profiles
         run: |
           python build/aster-apps/tools/prepare-publication.py --tag "$ASTER_TAG" \
             --repository "$GITHUB_REPOSITORY" --output "build/assets-$ASTER_TAG" \
