@@ -100,8 +100,12 @@ Published `obs-20261115-s31-1`. Added `fakepod-s31` / RISC-V / 460×460 bootstra
 
 ## FAKE POD NANO PRO music player, 2026-11-21
 
-The OBS channel points to `obs-20261121-hifi0419`. Store 0.3.2 on FAKE POD NANO PRO offers Aster Music 0.4.19 for `fakepod-s31`, RISC-V AOT, 460×460, firmware ABI 4.5 and the `media-player` capability. The package is 5,146,316 bytes with SHA-256 `604a161e4a0dc07d2f5a3b29253b321336c4384346885415ac528bf9179d6b5e`. The two Noto lyric fonts and their notices are inside the package. [Player source and credits](https://github.com/hello-myj/aster-apps/tree/40eaf8315bb30b2ce18c38761ae64990d1905222/HiFiPlayer)
+Snapshot `obs-20261121-hifi0419` introduced Aster Music 0.4.19 in Store 0.3.2 for `fakepod-s31`, RISC-V AOT, 460×460, firmware ABI 4.5 and the `media-player` capability. The package is 5,146,316 bytes with SHA-256 `604a161e4a0dc07d2f5a3b29253b321336c4384346885415ac528bf9179d6b5e`. The two Noto lyric fonts and their notices are inside the package. [Player source and credits](https://github.com/hello-myj/aster-apps/tree/40eaf8315bb30b2ce18c38761ae64990d1905222/HiFiPlayer)
 
 First boot on FAKE POD now installs Store 0.3.2. Existing 0.3.1 installations can use SDK serial deployment to upgrade the Store. Both catalogs are available under the same channel. The older Store reads the TouchTest catalog. A compatible 0.3.2 client follows the extended catalog and can download the player. [Store source](https://github.com/hello-myj/aster-apps/tree/5167721d345ab7a98017841b37280cfb345021e3/AppStore) · [Static export source](https://github.com/hello-myj/aster-sdk/blob/310b7d5690a58a7397a7dcc3eb6c6c8456875c95/tools/static_distribution.py)
 
 Anonymous readback verified the complete player package and a 206 byte-range response. The FAKE POD loaded the public listing and its icon. The Guangzhou bucket serves the same fish-eagle P4C5 and lckfb catalog contents as the preceding release (8 and 6 entries respectively). All ten FAKE POD system font hashes match the preceding bootstrap profile.
+
+## Aster Music 0.4.25, 2026-11-21
+
+The Guangzhou OBS channel was switched to `obs-20261121-hifi0425`. The FAKE POD NANO PRO extended catalog offers the player for `fakepod-s31` only. The RISC-V AOT package is 5,192,168 bytes with SHA-256 `3f22b11f44c4796eab113b1436399830a96629a1fa3ed95a032b8064d412e054`. [Player source and credits](https://github.com/hello-myj/aster-apps/tree/a5b706543767c5d2f71dfd99e2b1f05f97dc7967/HiFiPlayer)
