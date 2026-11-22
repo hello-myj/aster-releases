@@ -4,6 +4,8 @@ Free, anonymous device downloads for the Aster firmware and application ecosyste
 Source code remains in `hello-myj/aster-firmware`, `aster-sdk` and `aster-apps`.
 This repository contains publishing automation and documentation, not a running backend.
 
+First boot installs the board-specific Store and shared fonts. Applications such as Aster Music have their own versions and compatibility rules. Developers can install their own builds directly over serial using the [SDK](https://github.com/hello-myj/aster-sdk).
+
 Device source URL:
 
 ```text

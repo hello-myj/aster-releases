@@ -11,6 +11,10 @@ Use standard storage and public read/private write. Configure credentials only
 on the publishing machine (or in CI secrets), never in source or device files.
 The device requires no account or storage key.
 
+## Choose the update
+
+A bootstrap Store change affects the Store downloaded during first boot. Updating a catalog application changes its entry for compatible boards. When updating only the Store, compare the preceding per-board catalogs, application release IDs and font digests before switching the channel. Verify the Store ID, version and AOT target from the publicly downloaded package for each board. The public descriptor resolves the active snapshot; dated entries below record earlier snapshots.
+
 ## Build and export
 
 From the workspace, first build the selected APPS projects using their individual
@@ -96,7 +100,7 @@ Manual app installation/launch through the new channel remains a user check.
 
 ## ESP32-S31 bootstrap (2026-11-15)
 
-Published `obs-20261115-s31-1`. Added `fakepod-s31` / RISC-V / 460×460 bootstrap resources and an initial TouchTest catalog. P4 and lckfb catalogs retain the preceding release contents. The immutable snapshot reuses 869 existing objects through OBS server-side copies and uploads 16 new objects; new S31 metadata and payloads passed anonymous full SHA256 readback, as did the P4/lckfb bootstrap descriptors and first catalog pages. The root source was switched last. Device bootstrap validation is still in progress.
+Published `obs-20261115-s31-1`. Added `fakepod-s31` / RISC-V / 460×460 bootstrap resources and an initial TouchTest catalog. P4 and lckfb catalogs retain the preceding release contents. The immutable snapshot reuses 869 existing objects through OBS server-side copies and uploads 16 new objects; new S31 metadata and payloads passed anonymous full SHA256 readback, as did the P4/lckfb bootstrap descriptors and first catalog pages. The root source was switched last. Device bootstrap validation was still in progress when this snapshot was published.
 
 ## FAKE POD NANO PRO music player, 2026-11-21
 
